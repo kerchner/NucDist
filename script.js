@@ -58,4 +58,3 @@ function compute() {
 function reset() {
   document.getElementById("plotDiv").innerHTML = "";
 }
-​

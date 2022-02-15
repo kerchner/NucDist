@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nucleotide Frequency Calculator</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- import Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
+    <!-- import the webpage's javascript file -->
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <!-- this is the start of content -->
+    <h1>
+      Nucleotide Frequency Calculator
+    </h1>
+    <div>
+      <p>
+        Enter your DNA sequence: <input id="dna" type="text" />
+        <input type="button" value="Compute" onclick="compute()" />
+        <input type="button" value="Reset" onclick="reset()" />
+      </p>
+    </div>
+    <div id="plotDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+  </body>
+</html>

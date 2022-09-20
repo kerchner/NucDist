@@ -1,22 +1,23 @@
 function compute() {
   let dna = document.getElementById("dna").value;
-  dna = dna.toUpperCase(); // convert everything to uppercase
+  dna = dna.toUpperCase();
   dna = dna.replace(/[^A-Z]/g,""); // remove anything other than A-Z
+  document.getElementById("dna").value = dna;  // overwrite input value
   
-  let lettercounts = new Map(); // Map to hold our tallies, e.g. {'A': 4, 'C': 5, ...}
+  let lettercounts = {}; // new JSON object
   
   for (let i = 0; i < dna.length; i++) {
     let letter = dna[i];
 
-    if (lettercounts.has(letter)) {
-      lettercounts.set(letter, lettercounts.get(letter) + 1);
+    if (letter in lettercounts) {
+      lettercounts[letter] = lettercounts[letter] + 1;
     } else {
-      lettercounts.set(letter, 1);
+      lettercounts[letter] = 1;
     }
   }
 
-  let keys = Array.from(lettercounts.keys());
-  let vals = Array.from(lettercounts.values());
+  let keys = Object.keys(lettercounts);   // extract keys from lettercounts
+  let vals = Object.values(lettercounts); // extract values from lettercounts
   for (let i = 0; i < vals.length; i++) {
     vals[i] = vals[i] / dna.length;
   }
@@ -25,9 +26,9 @@ function compute() {
       labels: keys,
       values: vals,
       type: "pie",
-      // x: keys,
-      // y: vals,
-      // type: 'bar'
+      //x: keys,
+      //y: vals,
+      //type: 'bar'
     },
   ];
 
@@ -54,7 +55,7 @@ function compute() {
   Plotly.newPlot("plotDiv", data, layout);
 }
 
-
 function reset() {
   document.getElementById("plotDiv").innerHTML = "";
+  document.getElementById("dna").value = "";
 }
